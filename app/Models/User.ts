@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, computed } from '@ioc:Adonis/Lucid/Orm'
 import { UserRole } from 'App/Contracts/users'
 import BaseModel from './BaseModel'
 
@@ -13,6 +13,11 @@ export default class User extends BaseModel {
 
   @column()
   public lastName: string
+
+  @computed()
+  public get fullName() {
+    return `${this.firstName} ${this.lastName}`.trim()
+  }
 
   @column()
   public role: UserRole
