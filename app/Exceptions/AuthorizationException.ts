@@ -5,7 +5,7 @@ export default class AuthorizationException extends Exception {
   constructor(
     message: string = 'Você não possui permissões para realizar esta ação',
     status: number = 401,
-    code: string = 'E_UNAUTHORIZED'
+    code: string = 'E_UNAUTHORIZED_ACCESS'
   ) {
     super(message, status, code)
   }

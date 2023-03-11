@@ -4,7 +4,7 @@ import UsersService from 'App/Services/UsersService'
 export default class UsersController {
   private readonly service = new UsersService()
 
-  public index({ request }: HttpContextContract): Promise<PaginatedResponse> {
+  public findUsers({ request }: HttpContextContract): Promise<PaginatedResponse> {
     return this.service.findUsers(request.qs())
   }
 }
