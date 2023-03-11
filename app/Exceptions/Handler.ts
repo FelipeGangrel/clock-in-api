@@ -15,9 +15,27 @@
 
 import Logger from '@ioc:Adonis/Core/Logger'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { ValidationException as CoreValidationException } from '@ioc:Adonis/Core/Validator'
+import AuthorizationException from './AuthorizationException'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
   constructor() {
     super(Logger)
+  }
+
+  public async handle(error: any, ctx: HttpContextContract): Promise<void> {
+    if (error instanceof CoreValidationException) {
+      return error.handle(error, ctx)
+    }
+
+    if (error instanceof AuthorizationException) {
+      return error.handle(error, ctx)
+    }
+
+    ctx.response.status(error.status || 500).send({
+      message: error.message || 'Erro ao realizar sua requisição',
+      code: error.code || 'E_EXCEPTION',
+    })
   }
 }
