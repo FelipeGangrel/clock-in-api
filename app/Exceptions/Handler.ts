@@ -18,6 +18,8 @@ import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ValidationException as CoreValidationException } from '@ioc:Adonis/Core/Validator'
 import AuthorizationException from './AuthorizationException'
+import ValidationException from './ValidationException'
+import GenericException from './GenericException'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
   constructor() {
@@ -30,6 +32,14 @@ export default class ExceptionHandler extends HttpExceptionHandler {
     }
 
     if (error instanceof AuthorizationException) {
+      return error.handle(error, ctx)
+    }
+
+    if (error instanceof ValidationException) {
+      return error.handle(error, ctx)
+    }
+
+    if (error instanceof GenericException) {
       return error.handle(error, ctx)
     }
 
