@@ -1,9 +1,9 @@
 import { ModelQueryBuilderContract } from '@ioc:Adonis/Lucid/Orm'
 import { PaginatedResponse } from 'App/Contracts/common'
-import { FindUsers } from 'App/Contracts/user'
+import { FindUsers } from 'App/Contracts/users'
 import User from 'App/Models/User'
 
-export default class UserService {
+export default class UsersService {
   public async findUsers(payload: FindUsers): Promise<PaginatedResponse> {
     const { page = 1, limit = 10, direction = 'asc', orderBy = 'firstName', search = '' } = payload
 

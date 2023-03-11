@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave } from '@ioc:Adonis/Lucid/Orm'
-import { UserRole } from 'App/Contracts/user'
+import { UserRole } from 'App/Contracts/users'
 import BaseModel from './BaseModel'
 
 export default class User extends BaseModel {
