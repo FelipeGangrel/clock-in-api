@@ -1,6 +1,6 @@
 import type { ModelQueryBuilderContract } from '@ioc:Adonis/Lucid/Orm'
-import type { PaginatedResponse } from 'App/Contracts/common'
-import type { FindUsers } from 'App/Contracts/users'
+import type { PaginatedResponse } from 'App/Contracts/Common'
+import type { FindUsers } from 'App/Contracts/Users'
 import User from 'App/Models/User'
 
 export default class UsersService {

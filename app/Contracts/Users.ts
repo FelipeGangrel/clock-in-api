@@ -1,4 +1,4 @@
-import type { FindMany } from './common'
+import type { FindMany } from './Common'
 
 export enum UserRole {
   ADMIN = 'admin',

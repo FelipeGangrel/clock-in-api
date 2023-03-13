@@ -7,6 +7,7 @@ Route.group(() => {
 }).prefix('auth')
 
 Route.group(() => {
+  Route.get('/me', `${c}.me`)
   Route.get('/logout', `${c}.logout`)
 })
   .prefix('auth')

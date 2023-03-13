@@ -1,6 +1,6 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import User from 'App/Models/User'
-import { UserRole } from 'App/Contracts/users'
+import { UserRole } from 'App/Contracts/Users'
 import { UserFactory } from 'Database/factories/User'
 
 type AdminEntry = Pick<User, 'firstName' | 'lastName' | 'email' | 'role'>

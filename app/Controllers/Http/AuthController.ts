@@ -1,4 +1,4 @@
-import type { AuthenticationResponse } from 'App/Contracts/auth'
+import type { AuthenticationResponse } from 'App/Contracts/Auth'
 import type { HttpContextContract } from 'App/Contracts/Common'
 import AuthService from 'App/Services/AuthService'
 
@@ -11,5 +11,9 @@ export default class AuthController {
 
   public logout(payload: HttpContextContract): Promise<void> {
     return this.service.logout(payload)
+  }
+
+  public me(payload: HttpContextContract): AuthenticationResponse['profile'] {
+    return this.service.me(payload)
   }
 }
