@@ -4,6 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "make:db": "mkdir -p tmp && touch tmp/db.sqlite3",
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
     "start": "node server.js",
