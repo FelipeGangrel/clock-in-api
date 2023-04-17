@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            text-rendering: optimizeLegibility !important;
+            -webkit-font-smoothing: antialiased !important;
+            background: #f8f8f8;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #1c1c2b;
+            font-weight: normal;
+            overflow-x: hidden;
+            padding: 64px 0;
+        }
+
+        div.header {
+            display: block;
+            width: 100%;
+            max-width: 640px;
+            text-align: center;
+            margin: 0 auto;
+            background-color: #dcdce7;
+            padding: 56px 32px;
+            color: #414166;
+        }
+
+        div.content {
+            display: block;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            background: #fafafa;
+            border: 1px #dcdce7 solid;
+            border-top: none;
+        }
+    </style>
+    @!section('styles')
+</head>
+<body>
+    <div class="header">
+        <h1>Clock In</h1>
+    </div>
+    <div class="content">
+        @!section('content')
+    </div>
+</body>
+</html>
