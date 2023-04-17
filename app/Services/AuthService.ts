@@ -1,5 +1,9 @@
 import Mail from '@ioc:Adonis/Addons/Mail'
-import type { AuthenticationResponse, GeneratePasswordResetTokenPayload } from 'App/Contracts/Auth'
+import type {
+  AuthenticationResponse,
+  GeneratePasswordResetTokenPayload,
+  ResetPasswordPayload,
+} from 'App/Contracts/Auth'
 import { HttpContextContract } from 'App/Contracts/Common'
 import AuthorizationException from 'App/Exceptions/AuthorizationException'
 import User from 'App/Models/User'
@@ -53,7 +57,7 @@ export default class AuthService {
     try {
       const { email } = payload
 
-      const user = await User.findByOrFail('email', email)
+      const user = await User.query().where({ email }).firstOrFail()
       const token = this.generateNumericToken(6)
 
       await Mail.send((message) => {
@@ -74,6 +78,21 @@ export default class AuthService {
     } catch (error) {
       console.log('Error', error)
       throw new AuthorizationException('Usuário não encontrado')
+    }
+  }
+
+  public async resetPassword(payload: ResetPasswordPayload): Promise<void> {
+    try {
+      const { email, token, password } = payload
+
+      const user = await User.query().where({ email, passwordResetToken: token }).firstOrFail()
+      user.merge({
+        password,
+        passwordResetToken: null,
+      })
+      await user.save()
+    } catch (error) {
+      throw new AuthorizationException('Código de recuperação de senha inválido')
     }
   }
 
