@@ -4,6 +4,7 @@ const c = 'AuthController'
 
 Route.group(() => {
   Route.post('/login', `${c}.login`)
+  Route.post('/generate-password-reset-token', `${c}.generatePasswordResetToken`)
 }).prefix('auth')
 
 Route.group(() => {

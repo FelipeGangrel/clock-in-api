@@ -9,3 +9,7 @@ export interface AuthenticationResponse {
     role: string
   }
 }
+
+export interface GeneratePasswordResetTokenPayload {
+  email: string
+}

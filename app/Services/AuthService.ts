@@ -1,4 +1,4 @@
-import type { AuthenticationResponse } from 'App/Contracts/Auth'
+import type { AuthenticationResponse, GeneratePasswordResetTokenPayload } from 'App/Contracts/Auth'
 import { HttpContextContract } from 'App/Contracts/Common'
 import AuthorizationException from 'App/Exceptions/AuthorizationException'
 import User from 'App/Models/User'
@@ -44,6 +44,33 @@ export default class AuthService {
       lastName: user.lastName,
       role: user.role,
     }
+  }
+
+  public async generatePasswordResetToken(
+    payload: GeneratePasswordResetTokenPayload
+  ): Promise<void> {
+    try {
+      const { email } = payload
+
+      const user = await User.findByOrFail('email', email)
+      const token = this.generateNumericToken(6)
+      user.merge({
+        passwordResetToken: token,
+      })
+      await user.save()
+    } catch (error) {
+      throw new AuthorizationException('Usuário não encontrado')
+    }
+  }
+
+  private generateNumericToken(length: number): string {
+    let result = ''
+    const characters = '0123456789'
+    const charactersLength = characters.length
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength))
+    }
+    return result
   }
 
   private generateAuthenticationResponse(token: string, user: User): AuthenticationResponse {
