@@ -1,8 +1,13 @@
-import type { AuthenticationResponse, GeneratePasswordResetTokenPayload } from 'App/Contracts/Auth'
+import type {
+  AuthenticationResponse,
+  GeneratePasswordResetTokenPayload,
+  ResetPasswordPayload,
+} from 'App/Contracts/Auth'
 import type { HttpContextContract } from 'App/Contracts/Common'
 import AuthService from 'App/Services/AuthService'
 import GeneratePasswordResetTokenValidator from 'App/Validators/Auth/GeneratePasswordResetTokenValidator'
 import LoginValidator from 'App/Validators/Auth/LoginValidator'
+import ResetPasswordValidator from 'App/Validators/Auth/ResetPasswordValidator'
 
 export default class AuthController {
   private readonly service = new AuthService()
@@ -25,5 +30,10 @@ export default class AuthController {
       GeneratePasswordResetTokenValidator
     )
     return this.service.generatePasswordResetToken(payload)
+  }
+
+  public async resetPassword({ request }: HttpContextContract): Promise<void> {
+    const payload: ResetPasswordPayload = await request.validate(ResetPasswordValidator)
+    return this.service.resetPassword(payload)
   }
 }
