@@ -29,6 +29,9 @@ export default class User extends BaseModel {
   public password: string
 
   @column()
+  public passwordResetToken: string | null
+
+  @column()
   public rememberMeToken: string | null
 
   @column.dateTime()
