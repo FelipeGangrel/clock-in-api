@@ -1,3 +1,4 @@
+import Mail from '@ioc:Adonis/Addons/Mail'
 import type { AuthenticationResponse, GeneratePasswordResetTokenPayload } from 'App/Contracts/Auth'
 import { HttpContextContract } from 'App/Contracts/Common'
 import AuthorizationException from 'App/Exceptions/AuthorizationException'
@@ -54,11 +55,24 @@ export default class AuthService {
 
       const user = await User.findByOrFail('email', email)
       const token = this.generateNumericToken(6)
+
+      await Mail.send((message) => {
+        message
+          .subject('Recuperação de senha')
+          .from('no-reply@example.com', 'Não responder')
+          .to(email, user.firstName)
+          .htmlView('emails/password_reset', {
+            name: user.firstName,
+            token,
+          })
+      })
+
       user.merge({
         passwordResetToken: token,
       })
       await user.save()
     } catch (error) {
+      console.log('Error', error)
       throw new AuthorizationException('Usuário não encontrado')
     }
   }
