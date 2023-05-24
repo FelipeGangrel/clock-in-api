@@ -17,7 +17,8 @@ export default class RegisterLateClockInValidator {
   public messages: CustomMessages = {
     'latitude.required': 'Informe a latitude',
     'longitude.required': 'Informe a longitude',
-    'datetime.required': 'Informe o horário',
+    'dateTime.required': 'Informe o horário',
+    'dateTime.date.format': 'Informe um horário válido',
     'comment.required': 'Informe sua justificativa',
   }
 }
