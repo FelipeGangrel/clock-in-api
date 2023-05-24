@@ -3,3 +3,13 @@ export enum ClockInType {
   LATE = 'LATE',
   ADJUSTED = 'ADJUSTED',
 }
+
+export interface RegisterOnTimeClockIn {
+  latitude: string
+  longitude: string
+}
+
+export interface RegisterLateClockIn extends RegisterOnTimeClockIn {
+  comment: string
+  datetime: string
+}
