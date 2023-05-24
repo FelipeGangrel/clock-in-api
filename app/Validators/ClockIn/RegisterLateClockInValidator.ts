@@ -10,7 +10,7 @@ export default class RegisterLateClockInValidator {
   public schema = schema.create({
     latitude: schema.string({ trim: true }),
     longitude: schema.string({ trim: true }),
-    datetime: schema.date({ format: 'yyyy-MM-dd HH:mm:ss' }),
+    dateTime: schema.date({ format: 'yyyy-MM-dd HH:mm:ss' }),
     comment: schema.string({ trim: true }),
   })
 

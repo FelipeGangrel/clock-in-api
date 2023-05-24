@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon'
+
 export enum ClockInType {
   ON_TIME = 'ON_TIME',
   LATE = 'LATE',
@@ -11,5 +13,5 @@ export interface RegisterOnTimeClockIn {
 
 export interface RegisterLateClockIn extends RegisterOnTimeClockIn {
   comment: string
-  datetime: string
+  dateTime: DateTime
 }
