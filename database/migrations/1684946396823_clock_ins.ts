@@ -7,11 +7,20 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
-      table.enum('type', Object.values(ClockInType)).defaultTo(ClockInType.IN).notNullable()
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
+      table.enum('type', Object.values(ClockInType)).defaultTo(ClockInType.ON_TIME).notNullable()
+      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
+      table.string('latitude').notNullable()
+      table.string('longitude').notNullable()
+      table.timestamp('date_time', { useTz: true }).notNullable()
+      table.text('comment').defaultTo(null)
+      table
+        .integer('validated_by')
+        .unsigned()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
+        .defaultTo(null)
+      table.timestamp('validated_at', { useTz: true }).defaultTo(null)
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

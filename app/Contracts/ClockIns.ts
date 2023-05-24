@@ -1,4 +1,5 @@
 export enum ClockInType {
-  IN = 'IN',
-  OUT = 'OUT',
+  ON_TIME = 'ON_TIME',
+  LATE = 'LATE',
+  ADJUSTED = 'ADJUSTED',
 }
