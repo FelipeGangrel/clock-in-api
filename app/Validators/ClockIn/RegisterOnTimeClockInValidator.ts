@@ -1,18 +1,19 @@
-import { schema, rules, type CustomMessages } from '@ioc:Adonis/Core/Validator'
+import { schema, type CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ValidationExceptionReporter from 'App/Exceptions/ValidationExceptionReporter'
 
-export default class GeneratePasswordResetTokenValidator {
+export default class RegisterOnTimeClockInValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public reporter = ValidationExceptionReporter
 
   public schema = schema.create({
-    email: schema.string({ trim: true }, [rules.email()]),
+    latitude: schema.string({ trim: true }),
+    longitude: schema.string({ trim: true }),
   })
 
   public messages: CustomMessages = {
-    'email.required': 'Informe seu e-mail de login',
-    'email.email': 'Informe um e-mail válido',
+    'latitude.required': 'Informe a latitude',
+    'longitude.required': 'Informe a longitude',
   }
 }
