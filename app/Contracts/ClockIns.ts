@@ -25,6 +25,7 @@ export interface FindClockInsCalendarEntries {
 
 export interface ClockInCalendarEntry {
   date: string
+  weekday: string
   total: number
   clockIns: ClockIn[]
 }

@@ -61,6 +61,7 @@ export default class ClockInService {
       return {
         date: day.toFormat('yyyy-MM-dd'),
         total: validDay ? validDay.total : 0,
+        weekday: day.toFormat('EEEE'),
         clockIns: [],
       }
     })
