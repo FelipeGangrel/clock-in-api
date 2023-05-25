@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { FindMany } from './Common'
+import ClockIn from 'App/Models/ClockIn'
 
 export enum ClockInType {
   ON_TIME = 'ON_TIME',
@@ -17,6 +17,14 @@ export interface RegisterLateClockIn extends RegisterOnTimeClockIn {
   dateTime: DateTime
 }
 
-export interface FindClockIns extends FindMany {
-  userId?: number
+export interface FindClockInsCalendarEntries {
+  userId: number
+  startDate?: string
+  endDate?: string
+}
+
+export interface ClockInCalendarEntry {
+  date: string
+  total: number
+  clockIns: ClockIn[]
 }

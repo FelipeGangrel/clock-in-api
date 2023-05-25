@@ -1,5 +1,5 @@
-import { FindClockIns } from 'App/Contracts/ClockIns'
-import { HttpContextContract, PaginatedResponse } from 'App/Contracts/Common'
+import { ClockInCalendarEntry, FindClockInsCalendarEntries } from 'App/Contracts/ClockIns'
+import { HttpContextContract } from 'App/Contracts/Common'
 import { UserRole } from 'App/Contracts/Users'
 import ClockIn from 'App/Models/ClockIn'
 import ClockInService from 'App/Services/ClockInService'
@@ -19,13 +19,18 @@ export default class ClockInController {
     return this.service.registerLate(payload, auth.user!)
   }
 
-  public async findClockIns({ request, auth }: HttpContextContract): Promise<PaginatedResponse> {
+  public async findClockIns({
+    request,
+    auth,
+  }: HttpContextContract): Promise<ClockInCalendarEntry[]> {
     const user = auth.user!
 
-    const payload: FindClockIns = {
+    const partialPayload: Partial<FindClockInsCalendarEntries> = {
       ...(user.role !== UserRole.ADMIN && { userId: user.id }),
       ...request.qs(),
     }
+
+    const payload = { userId: user.id, ...partialPayload }
 
     return this.service.findClockIns(payload)
   }

@@ -6,6 +6,6 @@ export default class ClockInSeeder extends BaseSeeder {
   public async run() {
     await ClockIn.truncate()
 
-    await ClockInFactory.createMany(10)
+    await ClockInFactory.createMany(100)
   }
 }

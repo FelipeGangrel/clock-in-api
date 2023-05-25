@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BelongsTo, belongsTo, column, computed } from '@ioc:Adonis/Lucid/Orm'
+import { BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import { ClockInType } from 'App/Contracts/ClockIns'
 import BaseModel from './BaseModel'
 import User from './User'
@@ -22,11 +22,6 @@ export default class ClockIn extends BaseModel {
 
   @column()
   public longitude: string
-
-  @computed()
-  public get location() {
-    return [this.latitude, this.longitude]
-  }
 
   @column.dateTime({ autoCreate: true })
   public dateTime: DateTime
