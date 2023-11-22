@@ -9,7 +9,7 @@ interface ValidationError {
 /**
  * Use this to throw a validation exception anywhere in your application.
  */
-export default class ValdiationException extends Exception {
+export default class ValidationException extends Exception {
   private readonly validationErrors: ValidationError[]
   constructor(
     validationErrors: ValidationError[] = [],
