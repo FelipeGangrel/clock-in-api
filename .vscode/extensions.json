@@ -1,8 +1,11 @@
 {
   "recommendations": [
-    "esbenp.prettier-vscode",
+    "adonisjs.vscode-edge",
     "dbaeumer.vscode-eslint",
-    "qwtel.sqlite-viewer",
-    "jripouteau.adonis-vscode-extension"
+    "esbenp.prettier-vscode",
+    "humao.rest-client",
+    "jripouteau.adonis-vscode-extension",
+    "jripouteau.japa-vscode",
+    "qwtel.sqlite-viewer"
   ]
 }
